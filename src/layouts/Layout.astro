@@ -20,6 +20,9 @@ const canonicalURL = new URL(pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
 
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="lWQEbHxYog8lUq4hDj-yNCDcOjrnp1GZD9uNu7JjMoI" />
+
     <!-- Preconnect to CDN -->
     <link rel="preconnect" href="https://imagedelivery.net" />
 
@@ -59,15 +62,15 @@ const canonicalURL = new URL(pathname, Astro.site);
 
           <!-- CTA -->
           <div class="flex items-center gap-x-4">
-            <button onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' })" 
+            <a href="#acquire" 
                     class="hidden md:block px-6 py-2.5 text-sm font-semibold rounded-full border border-[#b8975e]/40 hover:bg-[#b8975e]/10 hover:border-[#b8975e] transition-all active:scale-[0.985]">
               Inquire
-            </button>
-            <button onclick="showInquiryModal()"
+            </a>
+            <a href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com"
                     class="px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full flex items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
               <span>Secure Domain</span>
               <i class="fa-solid fa-arrow-right text-xs"></i>
-            </button>
+            </a>
             
             <!-- Mobile Menu -->
             <button class="md:hidden w-10 h-10 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
@@ -141,76 +144,6 @@ const canonicalURL = new URL(pathname, Astro.site);
       </div>
     </footer>
 
-    <!-- Inquiry Modal -->
-    <div id="inquiry-modal" onclick="if (event.target.id === 'inquiry-modal') hideInquiryModal()" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-      <div onclick="event.stopImmediatePropagation()" class="modal bg-[#171412] border border-white/10 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl">
-        <!-- Modal Header -->
-        <div class="px-8 pt-8 pb-5 flex items-center justify-between border-b border-white/10">
-          <div>
-            <div class="font-semibold text-2xl tracking-tight">Begin the Conversation</div>
-            <div class="text-sm text-[#b8975e]">A Stoic steward awaits your inquiry</div>
-          </div>
-          <button onclick="hideInquiryModal()" class="text-[#6b6259] hover:text-white text-3xl leading-none">&times;</button>
-        </div>
-
-        <form id="inquiry-form" onsubmit="submitInquiry(event)" class="px-8 py-8 space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">YOUR NAME</label>
-              <input type="text" id="name" required class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
-            </div>
-            <div>
-              <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">EMAIL ADDRESS</label>
-              <input type="email" id="email" required class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">PROJECT OR INTENTION (OPTIONAL)</label>
-            <input type="text" id="project" placeholder="e.g. Stoic leadership platform, personal brand, book project..." 
-                   class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
-          </div>
-
-          <div>
-            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">YOUR OFFER</label>
-            <div class="relative">
-              <div class="absolute left-5 top-3.5 text-[#b8975e]">$</div>
-              <input type="number" id="offer" value="24997" min="15000" step="100" 
-                     class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl pl-9 pr-5 py-3 text-sm outline-none font-mono tabular-nums">
-            </div>
-            <p class="text-[10px] text-[#6b6259] mt-1.5 px-1">Asking price is $24,997. Serious offers aligned with the domain's spirit are welcome.</p>
-          </div>
-
-          <div>
-            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">WHY DOES THIS DOMAIN RESONATE WITH YOU?</label>
-            <textarea id="message" rows="4" required placeholder="Tell us how you intend to steward this philosophical asset..." 
-                      class="w-full resize-y bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-3xl px-5 py-4 text-sm outline-none placeholder:text-[#6b6259]"></textarea>
-          </div>
-
-          <button type="submit" 
-                  class="w-full py-4 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] font-bold rounded-2xl flex items-center justify-center gap-x-2 text-base">
-            <span>SUBMIT INQUIRY</span>
-          </button>
-          
-          <p class="text-center text-[10px] text-[#6b6259]">Responses within 48 hours. All inquiries treated with confidentiality and respect.</p>
-        </form>
-
-        <!-- Success State (hidden initially) -->
-        <div id="success-state" class="hidden px-8 py-14 text-center">
-          <div class="mx-auto w-16 h-16 rounded-full bg-[#b8975e]/10 flex items-center justify-center mb-6">
-            <i class="fa-solid fa-check text-4xl text-[#b8975e]"></i>
-          </div>
-          <div class="text-2xl font-semibold tracking-tight mb-2">Inquiry Received</div>
-          <p class="text-[#a89f8f] max-w-xs mx-auto">Thank you. A thoughtful response will arrive within 48 hours. In the meantime, reflect on what this domain might help you build.</p>
-          
-          <button onclick="hideInquiryModal()" 
-                  class="mt-8 px-8 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-full transition-colors">
-            Return to Site
-          </button>
-        </div>
-      </div>
-    </div>
-
     <script>
       function copyEmail() {
         const email = 'sales@desertrich.com';
@@ -226,59 +159,6 @@ const canonicalURL = new URL(pathname, Astro.site);
         }).catch(() => {
           window.location.href = 'mailto:' + email;
         });
-      }
-
-      function showInquiryModal() {
-        const modal = document.getElementById('inquiry-modal');
-        const form = document.getElementById('inquiry-form');
-        const success = document.getElementById('success-state');
-        
-        form.classList.remove('hidden');
-        success.classList.add('hidden');
-        form.reset();
-        
-        document.getElementById('offer').value = '24997';
-        
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        
-        setTimeout(() => {
-          document.getElementById('name').focus();
-        }, 300);
-      }
-
-      function hideInquiryModal() {
-        const modal = document.getElementById('inquiry-modal');
-        modal.classList.remove('flex');
-        modal.classList.add('hidden');
-      }
-
-      function submitInquiry(e) {
-        e.preventDefault();
-        
-        const form = document.getElementById('inquiry-form');
-        const success = document.getElementById('success-state');
-        
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span>PROCESSING...</span>';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-          form.classList.add('hidden');
-          success.classList.remove('hidden');
-          
-          console.log('%c[Stoic Domain] New inquiry received:', 'color:#b8975e', {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            project: document.getElementById('project').value,
-            offer: document.getElementById('offer').value,
-            message: document.getElementById('message').value
-          });
-          
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }, 850);
       }
 
       function toggleMobileMenu() {

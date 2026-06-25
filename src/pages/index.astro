@@ -227,13 +227,11 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
       </div>
 
       <div class="mt-10">
-        <button onclick="showInquiryModal()" 
+        <a href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com&body=Hello,%0D%0A%0D%0AI%20am%20interested%20in%20acquiring%20letyourpassionschooseyou.com.%20Please%20provide%20details%20and%20next%20steps.%0D%0A%0D%0ABest%20regards," 
                 class="group px-14 py-5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] text-[#0c0a09] font-bold text-lg rounded-2xl inline-flex items-center gap-x-3 shadow-xl shadow-[#b8975e]/25 transition-all active:scale-[0.985]">
           <span>Inquire About Acquisition</span>
           <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
-        </button>
-        
-        <p class="mt-5 text-xs text-[#6b6259]">Or reach out directly via X <a href="https://x.com/ERG963" target="_blank" class="underline hover:text-[#b8975e]">@ERG963</a></p>
+        </a>
       </div>
       
       <div class="mt-12 pt-8 border-t border-white/10 text-xs text-[#6b6259] max-w-xs mx-auto">
@@ -348,22 +346,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
 
   // Keyboard controls
   function setupKeyboardControls() {
-    let modalOpen = false;
-    
-    // Track modal state
-    document.addEventListener('click', () => {
-      const modal = document.getElementById('inquiry-modal');
-      modalOpen = modal && !modal.classList.contains('hidden');
-    });
-    
     document.addEventListener('keydown', function(e) {
-      const modal = document.getElementById('inquiry-modal');
-      const isModalOpen = modal && !modal.classList.contains('hidden');
-      
-      if (e.key === "Escape" && isModalOpen) {
-        hideInquiryModal();
-      }
-      
       // Press "?" to shuffle wisdom
       if (e.key === "?" && document.activeElement?.tagName === "BODY") {
         e.preventDefault();
