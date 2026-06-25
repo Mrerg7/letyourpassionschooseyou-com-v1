@@ -1,0 +1,328 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = 'letyourpassionschooseyou.com — A premium Stoic domain for sale. Let virtue-aligned passions choose you.', ogImage } = Astro.props;
+const pathname = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : Astro.url.pathname + '/';
+const canonicalURL = new URL(pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Preconnect to CDN -->
+    <link rel="preconnect" href="https://imagedelivery.net" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <title>{title}</title>
+
+    <slot name="head" />
+  </head>
+  <body class="bg-[#0c0a09] text-[#f4efe4] antialiased">
+    <!-- Navigation -->
+    <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-[#0c0a09]/95 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-20">
+          <!-- Logo -->
+          <div class="flex items-center gap-x-3">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#b8975e] to-[#d4af37] flex items-center justify-center">
+              <i class="fa-solid fa-infinity text-[#0c0a09] text-xl"></i>
+            </div>
+            <div>
+              <span class="font-semibold tracking-tight text-xl">Let Your Passions</span>
+              <span class="font-light text-[#b8975e] tracking-[3px] text-sm block -mt-1">CHOOSE YOU</span>
+            </div>
+          </div>
+
+          <!-- Desktop Nav -->
+          <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+            <a href="#wisdom" class="hover:text-[#b8975e] transition-colors">Wisdom</a>
+            <a href="#philosophy" class="hover:text-[#b8975e] transition-colors">The Invitation</a>
+            <a href="#domain" class="hover:text-[#b8975e] transition-colors">The Asset</a>
+            <a href="#acquire" class="hover:text-[#b8975e] transition-colors">Acquire</a>
+          </div>
+
+          <!-- CTA -->
+          <div class="flex items-center gap-x-4">
+            <button onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' })" 
+                    class="hidden md:block px-6 py-2.5 text-sm font-semibold rounded-full border border-[#b8975e]/40 hover:bg-[#b8975e]/10 hover:border-[#b8975e] transition-all active:scale-[0.985]">
+              Inquire
+            </button>
+            <button onclick="showInquiryModal()"
+                    class="px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full flex items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
+              <span>Secure Domain</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </button>
+            
+            <!-- Mobile Menu -->
+            <button class="md:hidden w-10 h-10 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <!-- Domain Acquisition CTA -->
+        <div class="bg-gradient-to-b from-[#171412] to-[#1a1712] rounded-2xl p-8 md:p-10 mb-8 text-center border border-[#b8975e]/10">
+          <div class="inline-block px-4 py-1 bg-[#b8975e]/10 rounded-full text-xs font-medium tracking-wider text-[#b8975e] mb-5">
+            PREMIUM PHILOSOPHICAL DOMAIN AVAILABLE
+          </div>
+          <h3 class="text-2xl md:text-3xl font-bold text-[#f4efe4] mb-3 heading-serif">
+            Acquire letyourpassionschooseyou.com
+          </h3>
+          <p class="text-[#a89f8f] max-w-lg mx-auto mb-8 leading-relaxed">
+            A rare, phrase-complete premium domain carrying Stoic philosophical weight — ready for books, podcasts, coaching, or a brand built on timeless wisdom. Own the definitive digital identity for virtue-aligned leadership.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com&body=Hello,%0D%0A%0D%0AI%20am%20interested%20in%20acquiring%20letyourpassionschooseyou.com.%20Please%20provide%20details%20and%20next%20steps.%0D%0A%0D%0ABest%20regards,"
+              class="inline-flex items-center justify-center gap-x-2 px-8 py-3 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] text-[#0c0a09] font-semibold rounded-xl transition-all shadow-lg shadow-[#b8975e]/20"
+            >
+              <span>Inquire: sales@desertrich.com</span>
+              <i class="fa-solid fa-envelope text-sm"></i>
+            </a>
+            <button
+              id="copyEmailBtn"
+              class="inline-flex items-center justify-center gap-x-2 px-6 py-3 border border-[#b8975e]/20 hover:bg-white/5 text-[#d1c9b8] font-medium rounded-xl transition-all text-sm"
+              onclick="copyEmail()"
+            >
+              <i class="fa-regular fa-copy"></i>
+              <span>Copy Email</span>
+            </button>
+          </div>
+          <p class="mt-5 text-xs text-[#6b6259]">
+            Serious inquiries only. This domain is a philosophical asset to be stewarded with reason and virtue.
+          </p>
+        </div>
+
+        <!-- Bottom: Disclaimer + Info -->
+        <div class="border-t border-white/10 pt-8">
+          <p class="text-xs text-[#6b6259] mb-6 leading-relaxed max-w-3xl">
+            <strong>Disclaimer:</strong> This website is for demonstration and informational purposes only. It does not constitute an offer of services,
+            a commitment to deploy, or a guarantee of outcomes. All statistics, projections, and references to specific
+            technologies are based on publicly available information as of June 2026 and are subject to change.
+          </p>
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 text-xs text-[#6b6259]">
+            <div>
+              <p>&copy; 2026 letyourpassionschooseyou.com &mdash; Crafted with reason &amp; resolve</p>
+            </div>
+            <div class="flex items-center gap-x-4">
+              <span>One-time acquisition</span>
+              <span class="hidden md:inline">&bull;</span>
+              <span>Full ownership transfer</span>
+              <span class="hidden md:inline">&bull;</span>
+              <span>Premium .com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Inquiry Modal -->
+    <div id="inquiry-modal" onclick="if (event.target.id === 'inquiry-modal') hideInquiryModal()" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+      <div onclick="event.stopImmediatePropagation()" class="modal bg-[#171412] border border-white/10 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl">
+        <!-- Modal Header -->
+        <div class="px-8 pt-8 pb-5 flex items-center justify-between border-b border-white/10">
+          <div>
+            <div class="font-semibold text-2xl tracking-tight">Begin the Conversation</div>
+            <div class="text-sm text-[#b8975e]">A Stoic steward awaits your inquiry</div>
+          </div>
+          <button onclick="hideInquiryModal()" class="text-[#6b6259] hover:text-white text-3xl leading-none">&times;</button>
+        </div>
+
+        <form id="inquiry-form" onsubmit="submitInquiry(event)" class="px-8 py-8 space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">YOUR NAME</label>
+              <input type="text" id="name" required class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
+            </div>
+            <div>
+              <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">EMAIL ADDRESS</label>
+              <input type="email" id="email" required class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">PROJECT OR INTENTION (OPTIONAL)</label>
+            <input type="text" id="project" placeholder="e.g. Stoic leadership platform, personal brand, book project..." 
+                   class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl px-5 py-3 text-sm outline-none placeholder:text-[#6b6259]">
+          </div>
+
+          <div>
+            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">YOUR OFFER</label>
+            <div class="relative">
+              <div class="absolute left-5 top-3.5 text-[#b8975e]">$</div>
+              <input type="number" id="offer" value="24997" min="15000" step="100" 
+                     class="w-full bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-2xl pl-9 pr-5 py-3 text-sm outline-none font-mono tabular-nums">
+            </div>
+            <p class="text-[10px] text-[#6b6259] mt-1.5 px-1">Asking price is $24,997. Serious offers aligned with the domain's spirit are welcome.</p>
+          </div>
+
+          <div>
+            <label class="block text-xs tracking-widest text-[#b8975e] mb-1.5">WHY DOES THIS DOMAIN RESONATE WITH YOU?</label>
+            <textarea id="message" rows="4" required placeholder="Tell us how you intend to steward this philosophical asset..." 
+                      class="w-full resize-y bg-[#0c0a09] border border-white/15 focus:border-[#b8975e] rounded-3xl px-5 py-4 text-sm outline-none placeholder:text-[#6b6259]"></textarea>
+          </div>
+
+          <button type="submit" 
+                  class="w-full py-4 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] font-bold rounded-2xl flex items-center justify-center gap-x-2 text-base">
+            <span>SUBMIT INQUIRY</span>
+          </button>
+          
+          <p class="text-center text-[10px] text-[#6b6259]">Responses within 48 hours. All inquiries treated with confidentiality and respect.</p>
+        </form>
+
+        <!-- Success State (hidden initially) -->
+        <div id="success-state" class="hidden px-8 py-14 text-center">
+          <div class="mx-auto w-16 h-16 rounded-full bg-[#b8975e]/10 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-check text-4xl text-[#b8975e]"></i>
+          </div>
+          <div class="text-2xl font-semibold tracking-tight mb-2">Inquiry Received</div>
+          <p class="text-[#a89f8f] max-w-xs mx-auto">Thank you. A thoughtful response will arrive within 48 hours. In the meantime, reflect on what this domain might help you build.</p>
+          
+          <button onclick="hideInquiryModal()" 
+                  class="mt-8 px-8 py-2.5 text-sm border border-white/20 hover:bg-white/5 rounded-full transition-colors">
+            Return to Site
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function copyEmail() {
+        const email = 'sales@desertrich.com';
+        navigator.clipboard.writeText(email).then(() => {
+          const btn = document.getElementById('copyEmailBtn');
+          if (btn) {
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check text-green-400"></i><span class="text-green-400">Copied to clipboard!</span>';
+            setTimeout(() => {
+              btn.innerHTML = original;
+            }, 2200);
+          }
+        }).catch(() => {
+          window.location.href = 'mailto:' + email;
+        });
+      }
+
+      function showInquiryModal() {
+        const modal = document.getElementById('inquiry-modal');
+        const form = document.getElementById('inquiry-form');
+        const success = document.getElementById('success-state');
+        
+        form.classList.remove('hidden');
+        success.classList.add('hidden');
+        form.reset();
+        
+        document.getElementById('offer').value = '24997';
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        
+        setTimeout(() => {
+          document.getElementById('name').focus();
+        }, 300);
+      }
+
+      function hideInquiryModal() {
+        const modal = document.getElementById('inquiry-modal');
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+      }
+
+      function submitInquiry(e) {
+        e.preventDefault();
+        
+        const form = document.getElementById('inquiry-form');
+        const success = document.getElementById('success-state');
+        
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>PROCESSING...</span>';
+        submitBtn.disabled = true;
+        
+        setTimeout(() => {
+          form.classList.add('hidden');
+          success.classList.remove('hidden');
+          
+          console.log('%c[Stoic Domain] New inquiry received:', 'color:#b8975e', {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            project: document.getElementById('project').value,
+            offer: document.getElementById('offer').value,
+            message: document.getElementById('message').value
+          });
+          
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 850);
+      }
+
+      function toggleMobileMenu() {
+        const navLinks = document.createElement('div');
+        navLinks.className = 'fixed inset-0 bg-[#0c0a09]/95 z-[200] flex flex-col p-8 pt-24 text-xl';
+        navLinks.innerHTML = `
+          <div class="flex flex-col gap-y-6 text-center">
+            <a href="#wisdom" class="py-3 hover:text-[#b8975e] transition-colors">Wisdom</a>
+            <a href="#philosophy" class="py-3 hover:text-[#b8975e] transition-colors">The Invitation</a>
+            <a href="#domain" class="py-3 hover:text-[#b8975e] transition-colors">The Asset</a>
+            <a href="#acquire" class="py-3 hover:text-[#b8975e] transition-colors">Acquire</a>
+            
+            <div class="pt-8">
+              <button onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' }); this.closest('.fixed').remove();" 
+                      class="w-full py-4 bg-[#b8975e] text-[#0c0a09] font-bold rounded-2xl">
+                Secure This Domain
+              </button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(navLinks);
+        
+        navLinks.addEventListener('click', function handler(ev) {
+          if (ev.target.tagName === 'A' || ev.target.closest('button')) {
+            setTimeout(() => navLinks.remove(), 300);
+            navLinks.removeEventListener('click', handler);
+          }
+        });
+      }
+
+      // Sticky nav shadow on scroll
+      window.addEventListener('scroll', () => {
+        const nav = document.getElementById('nav');
+        if (nav) {
+          if (window.scrollY > 20) {
+            nav.classList.add('shadow-xl');
+          } else {
+            nav.classList.remove('shadow-xl');
+          }
+        }
+      });
+
+      console.log('%c[letyourpassionschooseyou.com] Premium Stoic domain landing page ready.', 'color:#b8975e');
+    </script>
+  </body>
+</html>

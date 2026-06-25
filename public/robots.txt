@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.well-known/
+
+Sitemap: https://letyourpassionschooseyou.com/sitemap.xml
+
+Crawl-delay: 1

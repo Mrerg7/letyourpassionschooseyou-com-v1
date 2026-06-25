@@ -1,0 +1,393 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SEO from '../components/SEO.astro';
+import StructuredData from '../components/StructuredData.astro';
+
+const title = 'letyourpassionschooseyou.com — A Premium Stoic Domain for Sale | Let Virtue-Aligned Passions Choose You';
+const description =
+  'Own letyourpassionschooseyou.com — a rare, phrase-complete premium Stoic domain. Let virtue-aligned passions choose you. Offered at $24,997.';
+const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-4963-7ea0-3b8f30c67d00/public';
+---
+
+<Layout title={title} description={description} ogImage={ogImage}>
+  <SEO title={title} description={description} ogImage={ogImage} pathname="/" />
+  <StructuredData
+    schema={{
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          name: 'letyourpassionschooseyou.com',
+          description: description,
+          url: 'https://letyourpassionschooseyou.com',
+        },
+        {
+          '@type': 'Product',
+          name: 'letyourpassionschooseyou.com Domain',
+          description: 'Premium domain name for Stoic philosophy, leadership, and conscious living. A rare, phrase-complete .com domain carrying Stoic philosophical weight.',
+          offers: {
+            '@type': 'Offer',
+            availability: 'https://schema.org/InStock',
+            url: 'https://letyourpassionschooseyou.com',
+            businessFunction: 'https://schema.org/Sell',
+          },
+        },
+      ],
+    }}
+  />
+
+  <!-- Hero -->
+  <header class="pt-20 min-h-[100dvh] flex items-center relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8">
+        <div class="w-2 h-2 rounded-full bg-[#b8975e] animate-pulse"></div>
+        <span class="text-xs tracking-[2px] font-medium text-[#b8975e]">PREMIUM PHILOSOPHICAL ASSET</span>
+      </div>
+
+      <!-- Domain Name -->
+      <h1 class="text-[3.25rem] md:text-[4.25rem] heading-serif text-balance leading-none tracking-[-0.06em] mb-4">
+        letyourpassionschooseyou.com
+      </h1>
+      
+      <p class="max-w-2xl mx-auto text-2xl md:text-3xl text-[#d1c9b8] font-light tracking-tight mb-4">
+        Let your passions choose you.
+      </p>
+      
+      <p class="max-w-lg mx-auto text-lg text-[#a89f8f] mb-10">
+        A Stoic domain for the rare individual ready to master the inner citadel 
+        and allow virtue to select what is truly worthy.
+      </p>
+
+      <!-- Price & CTAs -->
+      <div class="flex flex-col items-center gap-y-6">
+        <div class="inline-flex items-baseline gap-x-2 bg-white/5 border border-white/10 rounded-3xl px-8 py-3">
+          <span class="text-sm uppercase tracking-[3px] text-[#b8975e] font-medium">Acquisition Price</span>
+          <span class="text-5xl font-semibold tabular-nums tracking-tighter">$24,997</span>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md">
+          <button onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' })" 
+                  class="w-full sm:w-auto flex-1 justify-center px-10 py-4 bg-white text-[#0c0a09] hover:bg-[#f4efe4] active:bg-white transition-all font-bold text-base rounded-2xl flex items-center gap-x-3 group">
+            <span>Begin Acquisition</span>
+            <i class="fa-solid fa-key group-active:rotate-12 transition-transform"></i>
+          </button>
+          
+          <button onclick="document.getElementById('wisdom').scrollIntoView({ behavior: 'smooth' })" 
+                  class="w-full sm:w-auto flex-1 justify-center px-8 py-4 border border-white/20 hover:bg-white/5 active:bg-white/10 transition-all font-semibold text-base rounded-2xl flex items-center gap-x-3">
+            <span>Explore the Wisdom</span>
+          </button>
+        </div>
+        
+        <p class="text-xs text-[#6b6259] tracking-widest">ONE-TIME &bull; FULL OWNERSHIP &bull; ESCROW PROTECTED</p>
+      </div>
+    </div>
+
+    <!-- Subtle bottom gradient / scroll prompt -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-1 text-[#6b6259]">
+      <span class="text-[10px] tracking-[3px]">SCROLL TO BEGIN</span>
+      <i class="fa-solid fa-chevron-down text-sm animate-bounce"></i>
+    </div>
+  </header>
+
+  <!-- Philosophy / The Invitation -->
+  <section id="philosophy" class="max-w-4xl mx-auto px-6 pt-16 pb-20">
+    <div class="text-center mb-12">
+      <div class="inline text-[#b8975e] text-xs tracking-[4px] font-semibold">THE STOIC PATH</div>
+      <h2 class="section-title mt-3">The Invitation</h2>
+    </div>
+
+    <div class="prose prose-invert max-w-none text-[#d1c9b8] text-[17px] leading-relaxed">
+      <p class="text-balance">Modern culture urges us to "follow your passion." The Stoics offered something deeper and more radical: <span class="font-medium text-[#f4efe4]">cultivate a character so aligned with virtue that the right passions naturally choose you.</span></p>
+      
+      <p>When reason (logos) governs the soul, fleeting desires lose their tyranny. What remains are the callings that serve the good — the quiet, enduring passions that arise from wisdom, courage, justice, and temperance. This domain name captures that profound reversal.</p>
+      
+      <div class="my-10 p-8 border-l-4 border-[#b8975e] bg-[#171412] rounded-r-2xl">
+        <p class="italic text-xl leading-tight">"It is not that we have a short time to live, but that we waste a lot of it. Life is long enough, and a sufficiently generous amount has been given to us for the highest achievements if it were all well invested."</p>
+        <p class="mt-4 text-sm text-[#b8975e] font-medium">&mdash; Seneca, On the Shortness of Life</p>
+      </div>
+      
+      <p>letyourpassionschooseyou.com is more than a domain. It is a philosophical stance made digital — a reminder that true freedom is not the absence of passion, but the presence of passions worthy of a virtuous life.</p>
+    </div>
+  </section>
+
+  <!-- Timeless Wisdom -->
+  <section id="wisdom" class="bg-[#171412] py-16 border-y border-white/5">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-y-4 mb-10">
+        <div>
+          <div class="text-[#b8975e] text-xs tracking-[4px] font-semibold">FROM THE PORCH TO THE PRESENT</div>
+          <h2 class="section-title mt-2">Timeless Wisdom</h2>
+        </div>
+        <button id="shuffleBtn"
+                class="self-start md:self-auto inline-flex items-center gap-x-2 px-5 py-2 text-sm border border-white/15 hover:bg-white/5 rounded-full transition-colors">
+          <i class="fa-solid fa-random"></i>
+          <span>Shuffle Wisdom</span>
+        </button>
+      </div>
+
+      <div id="quotes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- The Domain Asset -->
+  <section id="domain" class="max-w-5xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <div class="inline text-[#b8975e] text-xs tracking-[4px] font-semibold">A RARE DIGITAL ASSET</div>
+      <h2 class="section-title mt-3">Why This Domain Matters</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-x-10 gap-y-10">
+      <!-- Left column -->
+      <div class="space-y-8">
+        <div class="flex gap-5">
+          <div class="mt-1 w-8 h-8 flex-shrink-0 rounded-xl bg-[#b8975e]/10 flex items-center justify-center text-[#b8975e]">
+            <i class="fa-solid fa-brain text-xl"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg tracking-tight">Philosophical Authority</h4>
+            <p class="text-[#a89f8f] mt-1.5">Instantly signals depth, intention, and timelessness. Perfect for anyone building in the Stoicism, leadership, or conscious living space.</p>
+          </div>
+        </div>
+        
+        <div class="flex gap-5">
+          <div class="mt-1 w-8 h-8 flex-shrink-0 rounded-xl bg-[#b8975e]/10 flex items-center justify-center text-[#b8975e]">
+            <i class="fa-solid fa-bullseye text-xl"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg tracking-tight">Memorable &amp; Brandable</h4>
+            <p class="text-[#a89f8f] mt-1.5">A complete, affirmative phrase. Easy to remember, spell, and emotionally connect with. Rare for domains of this conceptual weight.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="space-y-8">
+        <div class="flex gap-5">
+          <div class="mt-1 w-8 h-8 flex-shrink-0 rounded-xl bg-[#b8975e]/10 flex items-center justify-center text-[#b8975e]">
+            <i class="fa-solid fa-chart-line text-xl"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg tracking-tight">Cultural Momentum</h4>
+            <p class="text-[#a89f8f] mt-1.5">Stoicism is experiencing a powerful renaissance. This domain places its owner at the center of that conversation — ready for books, podcasts, coaching, or digital products.</p>
+          </div>
+        </div>
+        
+        <div class="flex gap-5">
+          <div class="mt-1 w-8 h-8 flex-shrink-0 rounded-xl bg-[#b8975e]/10 flex items-center justify-center text-[#b8975e]">
+            <i class="fa-solid fa-gem text-xl"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-lg tracking-tight">Investment Quality</h4>
+            <p class="text-[#a89f8f] mt-1.5">Premium phrase domains with genuine meaning and positive sentiment hold long-term value. This one carries built-in trust and storytelling power.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 p-8 bg-[#171412] border border-white/10 rounded-3xl text-center">
+      <p class="text-[#d1c9b8] max-w-md mx-auto">In a world of noise and distraction, this domain is a quiet declaration: <span class="font-medium text-[#f4efe4]">I choose what is worthy. I let virtue select my path.</span></p>
+    </div>
+  </section>
+
+  <!-- Acquisition -->
+  <section id="acquire" class="bg-[#171412] border-t border-white/5 py-16">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#b8975e] to-[#d4af37] mb-6">
+          <i class="fa-solid fa-scroll text-3xl text-[#0c0a09]"></i>
+        </div>
+        <h2 class="section-title">Acquire the Domain</h2>
+        <p class="mt-4 text-xl text-[#d1c9b8]">A single opportunity to own a piece of living philosophy.</p>
+      </div>
+
+      <div class="mx-auto max-w-xs mb-8">
+        <div class="text-center border border-white/15 bg-[#0c0a09] rounded-3xl py-6 px-8">
+          <div class="uppercase tracking-[3px] text-xs text-[#b8975e] mb-1">Firm Asking Price</div>
+          <div class="text-[3.1rem] leading-none font-semibold tabular-nums tracking-[-2.5px]">$24,997</div>
+          <div class="text-xs text-[#6b6259] mt-2">USD &bull; One-time payment</div>
+        </div>
+      </div>
+
+      <div class="max-w-md mx-auto space-y-4 text-left text-sm">
+        <div class="flex items-start gap-3 text-[#a89f8f]">
+          <i class="fa-solid fa-check text-[#b8975e] mt-1"></i>
+          <span>Full ownership transfer via secure escrow (Escrow.com or DAN.com recommended)</span>
+        </div>
+        <div class="flex items-start gap-3 text-[#a89f8f]">
+          <i class="fa-solid fa-check text-[#b8975e] mt-1"></i>
+          <span>Domain pushed to your preferred registrar (Namecheap, GoDaddy, Cloudflare, etc.)</span>
+        </div>
+        <div class="flex items-start gap-3 text-[#a89f8f]">
+          <i class="fa-solid fa-check text-[#b8975e] mt-1"></i>
+          <span>Serious inquiries only. Best offers from aligned stewards preferred.</span>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <button onclick="showInquiryModal()" 
+                class="group px-14 py-5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] text-[#0c0a09] font-bold text-lg rounded-2xl inline-flex items-center gap-x-3 shadow-xl shadow-[#b8975e]/25 transition-all active:scale-[0.985]">
+          <span>Inquire About Acquisition</span>
+          <i class="fa-solid fa-arrow-right-long group-hover:translate-x-1 transition-transform"></i>
+        </button>
+        
+        <p class="mt-5 text-xs text-[#6b6259]">Or reach out directly via X <a href="https://x.com/ERG963" target="_blank" class="underline hover:text-[#b8975e]">@ERG963</a></p>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-white/10 text-xs text-[#6b6259] max-w-xs mx-auto">
+        In the Stoic spirit: This domain is not merely an asset to be owned, but a responsibility to be stewarded with reason and virtue.
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Stoic quotes data
+  const stoicQuotes = [
+    {
+      quote: "You have power over your mind — not outside events. Realize this, and you will find strength.",
+      author: "Marcus Aurelius"
+    },
+    {
+      quote: "It is not that we have a short time to live, but that we waste a lot of it.",
+      author: "Seneca"
+    },
+    {
+      quote: "No great thing is created suddenly, any more than a bunch of grapes or a fig. If you tell me that you desire a fig, I answer you that there must be time. Let it first blossom, then bear fruit, then ripen.",
+      author: "Epictetus"
+    },
+    {
+      quote: "The chief task in life is simply this: to identify and separate matters so that I can say clearly to myself which are externals not under my control, and which have to do with the choices I actually control.",
+      author: "Epictetus"
+    },
+    {
+      quote: "We suffer more often in imagination than in reality.",
+      author: "Seneca"
+    },
+    {
+      quote: "The soul becomes dyed with the color of its thoughts.",
+      author: "Marcus Aurelius"
+    },
+    {
+      quote: "Freedom is secured not by the fulfilling of men's desires, but by the removal of desire.",
+      author: "Epictetus"
+    },
+    {
+      quote: "Choose not to be harmed — and you won't feel harmed. Don't feel harmed — and you haven't been.",
+      author: "Marcus Aurelius"
+    },
+    {
+      quote: "It is our opinion of things that creates the problem, not the things themselves.",
+      author: "Epictetus"
+    },
+    {
+      quote: "Wealth consists not in having great possessions, but in having few wants.",
+      author: "Epictetus"
+    }
+  ];
+
+  // Render quotes
+  function renderQuotes(quotesToShow: typeof stoicQuotes) {
+    const grid = document.getElementById('quotes-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    quotesToShow.forEach((item, index) => {
+      const card = document.createElement('div');
+      card.className = 'bg-[#171412] border border-white/10 p-7 rounded-3xl flex flex-col h-full hover:-translate-y-1 hover:shadow-xl transition-all duration-300';
+      
+      card.innerHTML = `
+        <div class="flex-1">
+          <i class="fa-solid fa-quote-left text-[#b8975e] text-2xl opacity-40 mb-4 block"></i>
+          <p class="text-[15.2px] leading-relaxed text-[#e8e0d0] italic">&ldquo;${item.quote}&rdquo;</p>
+        </div>
+        <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between">
+          <div>
+            <span class="block text-sm font-medium text-[#b8975e]">${item.author}</span>
+          </div>
+          <div class="text-[10px] px-2.5 py-px rounded bg-white/5 text-[#6b6259] font-mono">STOIC ${String(index + 1).padStart(2, '0')}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // Shuffle quotes randomly
+  function shuffleQuotes() {
+    const shuffled = [...stoicQuotes].sort(() => Math.random() - 0.5);
+    renderQuotes(shuffled.slice(0, 6));
+    
+    // Subtle toast
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#171412] border border-white/15 text-xs px-5 py-2 rounded-full flex items-center gap-x-2 shadow-xl z-[90]';
+    toast.innerHTML = '<span>Wisdom reshuffled.</span>';
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.transition = 'all 0.2s ease';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 200);
+    }, 1400);
+  }
+
+  // Initialize quotes
+  function initializeQuotes() {
+    const initial = [...stoicQuotes].sort(() => Math.random() - 0.5).slice(0, 6);
+    renderQuotes(initial);
+  }
+
+  // Setup shuffle button
+  function setupShuffleButton() {
+    const btn = document.getElementById('shuffleBtn');
+    if (btn) {
+      btn.addEventListener('click', shuffleQuotes);
+    }
+  }
+
+  // Keyboard controls
+  function setupKeyboardControls() {
+    let modalOpen = false;
+    
+    // Track modal state
+    document.addEventListener('click', () => {
+      const modal = document.getElementById('inquiry-modal');
+      modalOpen = modal && !modal.classList.contains('hidden');
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('inquiry-modal');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
+      
+      if (e.key === "Escape" && isModalOpen) {
+        hideInquiryModal();
+      }
+      
+      // Press "?" to shuffle wisdom
+      if (e.key === "?" && document.activeElement?.tagName === "BODY") {
+        e.preventDefault();
+        const wisdomSection = document.getElementById('wisdom');
+        wisdomSection?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+          shuffleQuotes();
+        }, 650);
+      }
+    });
+  }
+
+  // Boot everything
+  function initialize() {
+    initializeQuotes();
+    setupShuffleButton();
+    setupKeyboardControls();
+    console.log('%c[Stoic Domain] Press "?" while on the page to reshuffle wisdom quotes.', 'color:#6b6259; font-size: 9px');
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
+</script>

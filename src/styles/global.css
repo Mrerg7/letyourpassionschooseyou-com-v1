@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Instrument Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .heading-serif {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-x-3 px-9 py-4 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] text-[#0c0a09] font-bold text-lg rounded-2xl transition-all active:scale-[0.985] shadow-xl shadow-[#b8975e]/20;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-4 border border-[#b8975e]/40 hover:bg-[#b8975e]/10 hover:border-[#b8975e] text-[#d1c9b8] font-semibold text-lg rounded-2xl transition-all;
+  }
+
+  .section {
+    @apply py-16 md:py-20 px-6;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold text-[#f4efe4] tracking-tight;
+  }
+
+  .modern-pill {
+    @apply inline-block bg-[#b8975e]/10 text-[#b8975e] font-semibold text-xs px-3 py-1 rounded-full tracking-wide;
+  }
+
+  .stoic-divider {
+    @apply h-px;
+    background: linear-gradient(to right, transparent, rgba(184, 149, 94, 0.15), transparent);
+  }
+}
