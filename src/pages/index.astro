@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SEO from '../components/SEO.astro';
 import StructuredData from '../components/StructuredData.astro';
+import { Fragment } from 'astro/jsx-runtime';
 
 const title = 'letyourpassionschooseyou.com — A Premium Stoic Domain for Sale | Let Virtue-Aligned Passions Choose You';
 const description =
@@ -10,8 +11,9 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
 ---
 
 <Layout title={title} description={description} ogImage={ogImage}>
-  <SEO title={title} description={description} ogImage={ogImage} pathname="/" />
-  <StructuredData
+  <Fragment slot="head">
+    <SEO title={title} description={description} ogImage={ogImage} pathname="/" />
+    <StructuredData
     schema={{
       '@context': 'https://schema.org',
       '@graph': [
@@ -19,7 +21,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
           '@type': 'WebSite',
           name: 'letyourpassionschooseyou.com',
           description: description,
-          url: 'https://letyourpassionschooseyou.com',
+          url: 'https://letyourpassionschooseyou.com/',
         },
         {
           '@type': 'Product',
@@ -28,13 +30,14 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
           offers: {
             '@type': 'Offer',
             availability: 'https://schema.org/InStock',
-            url: 'https://letyourpassionschooseyou.com',
+            url: 'https://letyourpassionschooseyou.com/',
             businessFunction: 'https://schema.org/Sell',
           },
         },
       ],
     }}
-  />
+    />
+  </Fragment>
 
   <!-- Hero -->
   <header class="pt-20 min-h-[100dvh] flex items-center relative overflow-hidden">
