@@ -2,12 +2,19 @@ name = "letyourpassionschooseyou-com-v1"
 compatibility_date = "2026-06-25"
 workers_dev = false
 preview_urls = false
+main = "src/worker.js"
 
 [[routes]]
 pattern = "letyourpassionschooseyou.com"
 custom_domain = true
 
+[[routes]]
+pattern = "www.letyourpassionschooseyou.com"
+custom_domain = true
+
 [assets]
 directory = "./dist"
+binding = "ASSETS"
 html_handling = "force-trailing-slash"
 not_found_handling = "404-page"
+run_worker_first = true

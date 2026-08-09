@@ -3,11 +3,12 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
-  pathname: string;
+  pathname?: string;
 }
 
-const { title, description, ogImage, pathname } = Astro.props;
-const canonicalURL = new URL(pathname, Astro.site);
+const { title, description, ogImage } = Astro.props;
+// Keep OG/Twitter URLs aligned with the single HTTPS apex canonical.
+const canonicalURL = new URL('/', Astro.site);
 ---
 
 <meta name="title" content={title} />
