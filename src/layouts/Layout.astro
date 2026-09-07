@@ -69,14 +69,15 @@ const canonicalURL = new URL('/', Astro.site);
               Inquire
             </a>
             <a href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com"
-                    class="px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full flex items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
-              <span>Secure Domain</span>
-              <i class="fa-solid fa-arrow-right text-xs"></i>
+                    class="min-h-12 px-5 sm:px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full flex items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
+              <span class="sm:hidden">Secure</span>
+              <span class="hidden sm:inline">Secure Domain</span>
+              <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
             </a>
             
             <!-- Mobile Menu -->
-            <button class="md:hidden w-10 h-10 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
-              <i class="fa-solid fa-bars text-xl"></i>
+            <button type="button" aria-label="Open menu" class="md:hidden min-w-12 min-h-12 w-12 h-12 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
+              <i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
             </button>
           </div>
         </div>

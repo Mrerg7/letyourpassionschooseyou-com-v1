@@ -15,6 +15,9 @@ custom_domain = true
 [assets]
 directory = "./dist"
 binding = "ASSETS"
-html_handling = "force-trailing-slash"
+# Disable Cloudflare HTML redirects (/index.html→/, /404.html→/404) that
+# Search Console reports as "Page with redirect". The Worker serves "/" from
+# index.html and returns a real 404 for the 404 document paths.
+html_handling = "none"
 not_found_handling = "404-page"
 run_worker_first = true

@@ -1,5 +1,5 @@
-/index.html / 301
-/sitemap.xml /sitemap-index.xml 301
+# Section aliases → homepage (single-page site). /index.html and /sitemap.xml
+# are handled in the Worker as 200 rewrites so GSC does not flag redirects.
 /wisdom / 301
 /wisdom/ / 301
 /philosophy / 301
