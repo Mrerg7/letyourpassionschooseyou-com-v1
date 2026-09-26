@@ -36,6 +36,9 @@ function withHeaders(response, extra) {
 /** Static assets are content-hashed by Astro → safe to cache immutably. */
 function cacheControlFor(pathname) {
   if (pathname.startsWith('/_astro/')) return 'public, max-age=31536000, immutable';
+  if (pathname.startsWith('/fonts/')) {
+    return 'public, max-age=604800, stale-while-revalidate=86400';
+  }
   if (pathname === '/favicon.svg') return 'public, max-age=86400';
   if (pathname.endsWith('.html') || pathname === '/' || pathname === '') {
     return 'public, max-age=0, must-revalidate';

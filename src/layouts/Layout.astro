@@ -29,10 +29,10 @@ const canonicalURL = new URL('/', Astro.site);
     <!-- Preconnect to CDN -->
     <link rel="preconnect" href="https://imagedelivery.net" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <!-- Self-hosted fonts (declared in global.css): preload the two primary latin files -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/instrument-sans-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-700-latin.woff2" crossorigin />
+
     <!-- Font Awesome is icon-only decoration: load without blocking first paint -->
     <link
       rel="stylesheet"
