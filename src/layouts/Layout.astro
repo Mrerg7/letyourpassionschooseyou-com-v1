@@ -21,6 +21,7 @@ const canonicalURL = new URL('/', Astro.site);
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="lWQEbHxYog8lUq4hDj-yNCDcOjrnp1GZD9uNu7JjMoI" />
@@ -32,51 +33,64 @@ const canonicalURL = new URL('/', Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Font Awesome is icon-only decoration: load without blocking first paint -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    </noscript>
 
     <title>{title}</title>
 
     <slot name="head" />
   </head>
   <body class="bg-[#0c0a09] text-[#f4efe4] antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[300] focus:px-4 focus:py-2 focus:bg-[#b8975e] focus:text-[#0c0a09] focus:font-semibold focus:rounded-lg">
+      Skip to content
+    </a>
+
     <!-- Navigation -->
     <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/5 bg-[#0c0a09]/95 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex items-center justify-between h-20">
           <!-- Logo -->
-          <div class="flex items-center gap-x-3">
-            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#b8975e] to-[#d4af37] flex items-center justify-center">
-              <i class="fa-solid fa-infinity text-[#0c0a09] text-xl"></i>
+          <a href="/" class="flex items-center gap-x-2 sm:gap-x-3 min-w-0">
+            <div class="w-9 h-9 flex-shrink-0 rounded-full bg-gradient-to-br from-[#b8975e] to-[#d4af37] flex items-center justify-center">
+              <i class="fa-solid fa-infinity text-[#0c0a09] text-xl" aria-hidden="true"></i>
             </div>
-            <div>
-              <span class="font-semibold tracking-tight text-xl">Let Your Passions</span>
-              <span class="font-light text-[#b8975e] tracking-[3px] text-sm block -mt-1">CHOOSE YOU</span>
+            <div class="min-w-0">
+              <span class="font-semibold tracking-tight text-base sm:text-xl whitespace-nowrap">Let Your Passions</span>
+              <span class="font-light text-[#b8975e] tracking-[2px] sm:tracking-[3px] text-xs sm:text-sm block -mt-1 whitespace-nowrap">CHOOSE YOU</span>
             </div>
-          </div>
+          </a>
 
           <!-- Desktop Nav -->
-          <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
-            <a href="#wisdom" class="hover:text-[#b8975e] transition-colors">Wisdom</a>
-            <a href="#philosophy" class="hover:text-[#b8975e] transition-colors">The Invitation</a>
-            <a href="#domain" class="hover:text-[#b8975e] transition-colors">The Asset</a>
-            <a href="#acquire" class="hover:text-[#b8975e] transition-colors">Acquire</a>
+          <div class="hidden lg:flex items-center gap-x-6 xl:gap-x-8 text-sm font-medium">
+            <a href="#wisdom" class="py-2 hover:text-[#b8975e] transition-colors">Wisdom</a>
+            <a href="#philosophy" class="py-2 hover:text-[#b8975e] transition-colors">The Invitation</a>
+            <a href="#domain" class="py-2 hover:text-[#b8975e] transition-colors">The Asset</a>
+            <a href="#faq" class="py-2 hover:text-[#b8975e] transition-colors">FAQ</a>
+            <a href="#acquire" class="py-2 hover:text-[#b8975e] transition-colors">Acquire</a>
           </div>
 
           <!-- CTA -->
-          <div class="flex items-center gap-x-4">
+          <div class="flex items-center gap-x-3 sm:gap-x-4">
             <a href="#acquire" 
-                    class="hidden md:block px-6 py-2.5 text-sm font-semibold rounded-full border border-[#b8975e]/40 hover:bg-[#b8975e]/10 hover:border-[#b8975e] transition-all active:scale-[0.985]">
+                    class="hidden xl:block px-6 py-2.5 text-sm font-semibold rounded-full border border-[#b8975e]/40 hover:bg-[#b8975e]/10 hover:border-[#b8975e] transition-all active:scale-[0.985]">
               Inquire
             </a>
             <a href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com"
-                    class="min-h-12 px-5 sm:px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full flex items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
-              <span class="sm:hidden">Secure</span>
-              <span class="hidden sm:inline">Secure Domain</span>
+                    class="hidden sm:inline-flex min-h-12 px-5 sm:px-7 py-2.5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] transition-all text-[#0c0a09] text-sm font-bold rounded-full items-center gap-x-2 shadow-lg shadow-[#b8975e]/20">
+              <span>Secure Domain</span>
               <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
             </a>
             
             <!-- Mobile Menu -->
-            <button type="button" aria-label="Open menu" class="md:hidden min-w-12 min-h-12 w-12 h-12 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
+            <button type="button" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" class="lg:hidden min-w-11 min-h-11 w-11 h-11 flex items-center justify-center text-[#b8975e]" onclick="toggleMobileMenu()">
               <i class="fa-solid fa-bars text-xl" aria-hidden="true"></i>
             </button>
           </div>
@@ -84,7 +98,7 @@ const canonicalURL = new URL('/', Astro.site);
       </div>
     </nav>
 
-    <main>
+    <main id="main">
       <slot />
     </main>
 
@@ -119,23 +133,23 @@ const canonicalURL = new URL('/', Astro.site);
               <span>Copy Email</span>
             </button>
           </div>
-          <p class="mt-5 text-xs text-[#6b6259]">
+          <p class="mt-5 text-xs text-[#948a7d]">
             Serious inquiries only. This domain is a philosophical asset to be stewarded with reason and virtue.
           </p>
         </div>
 
         <!-- Bottom: Disclaimer + Info -->
         <div class="border-t border-white/10 pt-8">
-          <p class="text-xs text-[#6b6259] mb-6 leading-relaxed max-w-3xl">
+          <p class="text-xs text-[#948a7d] mb-6 leading-relaxed max-w-3xl">
             <strong>Disclaimer:</strong> This website is for demonstration and informational purposes only. It does not constitute an offer of services,
             a commitment to deploy, or a guarantee of outcomes. All statistics, projections, and references to specific
             technologies are based on publicly available information as of June 2026 and are subject to change.
           </p>
-          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 text-xs text-[#6b6259]">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-3 text-xs text-[#948a7d]">
             <div>
               <p>&copy; 2026 letyourpassionschooseyou.com &mdash; Crafted with reason &amp; resolve</p>
             </div>
-            <div class="flex items-center gap-x-4">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
               <span>One-time acquisition</span>
               <span class="hidden md:inline">&bull;</span>
               <span>Full ownership transfer</span>
@@ -145,6 +159,8 @@ const canonicalURL = new URL('/', Astro.site);
           </div>
         </div>
       </div>
+      <!-- Clearance for the sticky mobile acquisition bar -->
+      <div class="h-24 lg:h-0" aria-hidden="true"></div>
     </footer>
 
     <script>
@@ -165,32 +181,62 @@ const canonicalURL = new URL('/', Astro.site);
       }
 
       function toggleMobileMenu() {
+        if (document.getElementById('mobile-menu')) return;
+
+        const trigger = document.querySelector('[aria-haspopup="dialog"]');
+        trigger?.setAttribute('aria-expanded', 'true');
+
         const navLinks = document.createElement('div');
-        navLinks.className = 'fixed inset-0 bg-[#0c0a09]/95 z-[200] flex flex-col p-8 pt-24 text-xl';
+        navLinks.id = 'mobile-menu';
+        navLinks.setAttribute('role', 'dialog');
+        navLinks.setAttribute('aria-modal', 'true');
+        navLinks.setAttribute('aria-label', 'Site menu');
+        navLinks.className = 'fixed inset-0 bg-[#0c0a09]/98 z-[200] flex flex-col p-6 pt-6 text-xl overflow-y-auto';
         navLinks.innerHTML = `
-          <div class="flex flex-col gap-y-6 text-center">
+          <div class="flex items-center justify-between mb-6">
+            <span class="text-sm tracking-[3px] text-[#b8975e] font-semibold">MENU</span>
+            <button type="button" data-close aria-label="Close menu" class="min-w-11 min-h-11 w-11 h-12 flex items-center justify-center text-[#b8975e] text-2xl">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="flex flex-col gap-y-4 text-center">
             <a href="#wisdom" class="py-3 hover:text-[#b8975e] transition-colors">Wisdom</a>
             <a href="#philosophy" class="py-3 hover:text-[#b8975e] transition-colors">The Invitation</a>
             <a href="#domain" class="py-3 hover:text-[#b8975e] transition-colors">The Asset</a>
+            <a href="#faq" class="py-3 hover:text-[#b8975e] transition-colors">FAQ</a>
             <a href="#acquire" class="py-3 hover:text-[#b8975e] transition-colors">Acquire</a>
-            
-            <div class="pt-8">
-              <button onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' }); this.closest('.fixed').remove();" 
-                      class="w-full py-4 bg-[#b8975e] text-[#0c0a09] font-bold rounded-2xl">
+
+            <div class="pt-6">
+              <button type="button" data-close
+                      onclick="document.getElementById('acquire').scrollIntoView({ behavior: 'smooth' })"
+                      class="w-full min-h-14 py-4 bg-[#b8975e] text-[#0c0a09] font-bold rounded-2xl">
                 Secure This Domain
               </button>
             </div>
           </div>
         `;
-        
+
         document.body.appendChild(navLinks);
-        
-        navLinks.addEventListener('click', function handler(ev) {
-          if (ev.target.tagName === 'A' || ev.target.closest('button')) {
-            setTimeout(() => navLinks.remove(), 300);
-            navLinks.removeEventListener('click', handler);
+        document.body.style.overflow = 'hidden';
+
+        function closeMenu() {
+          document.body.style.overflow = '';
+          trigger?.setAttribute('aria-expanded', 'false');
+          navLinks.remove();
+          document.removeEventListener('keydown', onKey);
+        }
+
+        function onKey(e) {
+          if (e.key === 'Escape') closeMenu();
+        }
+
+        navLinks.addEventListener('click', function (ev) {
+          const target = ev.target as HTMLElement;
+          if (target.closest('a') || target.closest('[data-close]')) {
+            setTimeout(closeMenu, 120);
           }
         });
+        document.addEventListener('keydown', onKey);
       }
 
       // Sticky nav shadow on scroll

@@ -4,10 +4,42 @@ import SEO from '../components/SEO.astro';
 import StructuredData from '../components/StructuredData.astro';
 import { Fragment } from 'astro/jsx-runtime';
 
-const title = 'letyourpassionschooseyou.com — A Premium Stoic Domain for Sale | Let Virtue-Aligned Passions Choose You';
+const title = 'letyourpassionschooseyou.com — Premium Stoic Domain for Sale';
 const description =
-  'Own letyourpassionschooseyou.com — a rare, phrase-complete premium Stoic domain. Let virtue-aligned passions choose you. Offered at $24,997.';
+  'Own letyourpassionschooseyou.com — a rare phrase-complete Stoic .com. Escrow-protected transfer, full ownership. One-time $24,997. Inquire today.';
 const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-4963-7ea0-3b8f30c67d00/public';
+
+const SITE_URL = 'https://letyourpassionschooseyou.com/';
+const WEBSITE_ID = `${SITE_URL}#website`;
+const ORG_ID = `${SITE_URL}#organization`;
+const WEBPAGE_ID = `${SITE_URL}#webpage`;
+
+const faqs = [
+  {
+    q: 'Is letyourpassionschooseyou.com actually for sale?',
+    a: 'Yes. The domain is offered by its owner at a firm asking price of $24,997 USD, one-time. It is sold as a premium brand asset — not a revenue-generating website — and transfers with full ownership and no ongoing fees.',
+  },
+  {
+    q: 'How do I safely buy a premium domain name?',
+    a: 'Every transaction completes through escrow. We recommend Escrow.com or DAN.com: you fund the escrow account, the domain is transferred to you, and the seller is paid only after you confirm control. Never wire funds directly to an unverified seller.',
+  },
+  {
+    q: 'How long does a domain transfer take?',
+    a: 'An EPP/auth-code transfer between registrars normally completes in 5–7 days. A registrar push (Cloudflare, Namecheap, GoDaddy, Porkbun) is typically immediate. Escrow releases payment once the transfer is verified in your account.',
+  },
+  {
+    q: 'Why is this domain priced at $24,997?',
+    a: 'The valuation reflects a phrase-complete three-word .com — rare at this conceptual weight — with positive sentiment, exact brand fit for Stoic philosophy, leadership and conscious living, and comparables for meaningful phrase .com domains trading in the $15k–$50k range.',
+  },
+  {
+    q: 'Can I make an offer or pay in installments?',
+    a: 'Serious offers are reviewed by the owner. Lease-to-own or installment terms are handled case-by-case through escrow — include your proposed structure in your inquiry and we will respond with what is possible.',
+  },
+  {
+    q: 'What can I build with letyourpassionschooseyou.com?',
+    a: 'A book, podcast, newsletter, coaching practice, membership community or digital product centered on Stoicism, virtue-led leadership and intentional living. The name is a complete brand statement that explains itself on first hearing.',
+  },
+];
 ---
 
 <Layout title={title} description={description} ogImage={ogImage}>
@@ -19,16 +51,47 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
       '@graph': [
         {
           '@type': 'WebSite',
+          '@id': WEBSITE_ID,
           name: 'letyourpassionschooseyou.com',
           description: description,
-          url: 'https://letyourpassionschooseyou.com/',
+          url: SITE_URL,
+          inLanguage: 'en',
+          publisher: { '@id': ORG_ID },
+        },
+        {
+          '@type': 'Organization',
+          '@id': ORG_ID,
+          name: 'DesertRich.com',
+          url: 'https://desertrich.com/',
+          description: 'Broker of premium, meaning-rich .com domain names.',
+          sameAs: ['https://github.com/Mrerg7/letyourpassionschooseyou-com-v1'],
+          contactPoint: {
+            '@type': 'ContactPoint',
+            contactType: 'sales',
+            email: 'sales@desertrich.com',
+            availableLanguage: ['English'],
+          },
+        },
+        {
+          '@type': 'WebPage',
+          '@id': WEBPAGE_ID,
+          name: title,
+          description: description,
+          url: SITE_URL,
+          inLanguage: 'en',
+          isPartOf: { '@id': WEBSITE_ID },
+          primaryImageOfPage: ogImage,
+          about: { '@id': ORG_ID },
         },
         {
           '@type': 'Product',
+          '@id': `${SITE_URL}#product`,
           name: 'letyourpassionschooseyou.com Domain',
           description: 'Premium domain name for Stoic philosophy, leadership, and conscious living. A rare, phrase-complete .com domain carrying Stoic philosophical weight.',
           image: ogImage,
           sku: 'letyourpassionschooseyou-com',
+          mpn: 'letyourpassionschooseyou-com',
+          mainEntityOfPage: { '@id': WEBPAGE_ID },
           brand: {
             '@type': 'Brand',
             name: 'DesertRich.com',
@@ -36,11 +99,12 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
           category: 'DomainNames',
           offers: {
             '@type': 'Offer',
+            '@id': `${SITE_URL}#offer`,
             price: 24997,
             priceCurrency: 'USD',
             priceValidUntil: '2027-12-31',
             availability: 'https://schema.org/InStock',
-            url: 'https://letyourpassionschooseyou.com/',
+            url: SITE_URL,
             businessFunction: 'https://schema.org/Sell',
             itemCondition: 'https://schema.org/NewCondition',
             seller: {
@@ -78,13 +142,25 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
             },
           },
         },
+        {
+          '@type': 'FAQPage',
+          '@id': `${SITE_URL}#faq`,
+          mainEntity: faqs.map((item) => ({
+            '@type': 'Question',
+            name: item.q,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.a,
+            },
+          })),
+        },
       ],
     }}
     />
   </Fragment>
 
   <!-- Hero -->
-  <header class="pt-20 min-h-[100dvh] flex items-center relative overflow-hidden">
+  <header class="pt-24 pb-28 lg:pb-16 min-h-[100dvh] flex items-center relative overflow-hidden">
     <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
       <!-- Badge -->
       <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8">
@@ -93,8 +169,8 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
       </div>
 
       <!-- Domain Name -->
-      <h1 class="text-[clamp(1.75rem,8vw,4.25rem)] heading-serif text-balance leading-none tracking-[-0.06em] mb-4 break-words">
-        letyourpassionschooseyou.com
+      <h1 class="text-[clamp(1.75rem,8vw,4.25rem)] heading-serif text-balance leading-none tracking-[-0.06em] mb-4 break-words [overflow-wrap:anywhere]">
+        letyourpassions<wbr />chooseyou.com
       </h1>
       
       <p class="max-w-2xl mx-auto text-xl sm:text-2xl md:text-3xl text-[#d1c9b8] font-light tracking-tight mb-4">
@@ -126,15 +202,16 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
           </button>
         </div>
         
-        <p class="text-xs text-[#6b6259] tracking-widest">ONE-TIME &bull; FULL OWNERSHIP &bull; ESCROW PROTECTED</p>
+        <p class="text-xs text-[#948a7d] tracking-widest">ONE-TIME &bull; FULL OWNERSHIP &bull; ESCROW PROTECTED</p>
       </div>
     </div>
 
     <!-- Subtle bottom gradient / scroll prompt -->
-    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-1 text-[#6b6259]">
+    <div class="hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-y-1 text-[#948a7d]">
       <span class="text-[10px] tracking-[3px]">SCROLL TO BEGIN</span>
       <i class="fa-solid fa-chevron-down text-sm animate-bounce"></i>
     </div>
+
   </header>
 
   <!-- Philosophy / The Invitation -->
@@ -194,7 +271,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
             <i class="fa-solid fa-brain text-xl"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-lg tracking-tight">Philosophical Authority</h4>
+            <h3 class="font-semibold text-lg tracking-tight">Philosophical Authority</h3>
             <p class="text-[#a89f8f] mt-1.5">Instantly signals depth, intention, and timelessness. Perfect for anyone building in the Stoicism, leadership, or conscious living space.</p>
           </div>
         </div>
@@ -204,7 +281,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
             <i class="fa-solid fa-bullseye text-xl"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-lg tracking-tight">Memorable &amp; Brandable</h4>
+            <h3 class="font-semibold text-lg tracking-tight">Memorable &amp; Brandable</h3>
             <p class="text-[#a89f8f] mt-1.5">A complete, affirmative phrase. Easy to remember, spell, and emotionally connect with. Rare for domains of this conceptual weight.</p>
           </div>
         </div>
@@ -217,7 +294,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
             <i class="fa-solid fa-chart-line text-xl"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-lg tracking-tight">Cultural Momentum</h4>
+            <h3 class="font-semibold text-lg tracking-tight">Cultural Momentum</h3>
             <p class="text-[#a89f8f] mt-1.5">Stoicism is experiencing a powerful renaissance. This domain places its owner at the center of that conversation — ready for books, podcasts, coaching, or digital products.</p>
           </div>
         </div>
@@ -227,7 +304,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
             <i class="fa-solid fa-gem text-xl"></i>
           </div>
           <div>
-            <h4 class="font-semibold text-lg tracking-tight">Investment Quality</h4>
+            <h3 class="font-semibold text-lg tracking-tight">Investment Quality</h3>
             <p class="text-[#a89f8f] mt-1.5">Premium phrase domains with genuine meaning and positive sentiment hold long-term value. This one carries built-in trust and storytelling power.</p>
           </div>
         </div>
@@ -237,6 +314,36 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
     <div class="mt-14 p-8 bg-[#171412] border border-white/10 rounded-3xl text-center">
       <p class="text-[#d1c9b8] max-w-md mx-auto">In a world of noise and distraction, this domain is a quiet declaration: <span class="font-medium text-[#f4efe4]">I choose what is worthy. I let virtue select my path.</span></p>
     </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+    <div class="text-center mb-10">
+      <div class="inline text-[#b8975e] text-xs tracking-[4px] font-semibold">BEFORE YOU INQUIRE</div>
+      <h2 class="section-title mt-3">Frequently Asked Questions</h2>
+      <p class="mt-3 text-[#a89f8f] max-w-xl mx-auto">
+        Straight answers on price, escrow, transfer timelines, and what ownership of
+        letyourpassionschooseyou.com actually includes.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      {faqs.map((item) => (
+        <div class="bg-[#171412] border border-white/10 rounded-3xl p-6 md:p-7 h-full">
+          <h3 class="font-semibold text-[16.5px] leading-snug text-[#f4efe4] mb-2.5 flex gap-3">
+            <i class="fa-solid fa-circle-question text-[#b8975e] mt-1" aria-hidden="true"></i>
+            <span>{item.q}</span>
+          </h3>
+          <p class="text-[15px] leading-relaxed text-[#a89f8f]">{item.a}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-8 text-center text-sm text-[#a89f8f]">
+      Still have a question?
+      <a href="mailto:sales@desertrich.com?subject=Question%20-%20letyourpassionschooseyou.com" class="text-[#b8975e] underline underline-offset-4 hover:text-[#d4af37]">Email sales@desertrich.com</a>
+      &mdash; every inquiry is answered personally.
+    </p>
   </section>
 
   <!-- Acquisition -->
@@ -254,9 +361,34 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
         <div class="text-center border border-white/15 bg-[#0c0a09] rounded-3xl py-6 px-8">
           <div class="uppercase tracking-[3px] text-xs text-[#b8975e] mb-1">Firm Asking Price</div>
           <div class="text-[3.1rem] leading-none font-semibold tabular-nums tracking-[-2.5px]">$24,997</div>
-          <div class="text-xs text-[#6b6259] mt-2">USD &bull; One-time payment</div>
+          <div class="text-xs text-[#948a7d] mt-2">USD &bull; One-time payment</div>
         </div>
       </div>
+
+      <!-- Three-step acquisition process -->
+      <ol class="max-w-lg mx-auto mb-8 grid gap-3 text-left">
+        <li class="flex gap-4 items-start bg-[#0c0a09] border border-white/10 rounded-2xl p-4">
+          <span class="w-7 h-7 flex-shrink-0 rounded-full bg-[#b8975e] text-[#0c0a09] text-sm font-bold flex items-center justify-center">1</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#f4efe4]">Send your inquiry</h3>
+            <p class="text-xs text-[#a89f8f] mt-1 leading-relaxed">Email sales@desertrich.com — every serious inquiry receives a personal reply within one business day.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 items-start bg-[#0c0a09] border border-white/10 rounded-2xl p-4">
+          <span class="w-7 h-7 flex-shrink-0 rounded-full bg-[#b8975e] text-[#0c0a09] text-sm font-bold flex items-center justify-center">2</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#f4efe4]">Agree terms &amp; open escrow</h3>
+            <p class="text-xs text-[#a89f8f] mt-1 leading-relaxed">Price and transfer method confirmed, then an Escrow.com or DAN.com order protects both sides of the transaction.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 items-start bg-[#0c0a09] border border-white/10 rounded-2xl p-4">
+          <span class="w-7 h-7 flex-shrink-0 rounded-full bg-[#b8975e] text-[#0c0a09] text-sm font-bold flex items-center justify-center">3</span>
+          <div>
+            <h3 class="font-semibold text-sm text-[#f4efe4]">Take full ownership</h3>
+            <p class="text-xs text-[#a89f8f] mt-1 leading-relaxed">The domain lands in your registrar account, escrow releases payment, and the name is yours outright — no royalties, no strings.</p>
+          </div>
+        </li>
+      </ol>
 
       <div class="max-w-md mx-auto space-y-4 text-left text-sm">
         <div class="flex items-start gap-3 text-[#a89f8f]">
@@ -281,11 +413,32 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
         </a>
       </div>
       
-      <div class="mt-12 pt-8 border-t border-white/10 text-xs text-[#6b6259] max-w-xs mx-auto">
+      <div class="mt-12 pt-8 border-t border-white/10 text-xs text-[#948a7d] max-w-xs mx-auto">
         In the Stoic spirit: This domain is not merely an asset to be owned, but a responsibility to be stewarded with reason and virtue.
       </div>
     </div>
   </section>
+
+  <!-- Sticky acquisition bar: mobile & tablet -->
+  <div
+    id="sticky-cta"
+    class="fixed bottom-0 inset-x-0 z-40 lg:hidden border-t border-white/10 bg-[#0c0a09]/95 backdrop-blur-md transition-transform duration-300"
+    style="padding-bottom: env(safe-area-inset-bottom)"
+  >
+    <div class="flex items-center gap-3 px-4 py-3">
+      <div class="min-w-0">
+        <div class="text-[10px] tracking-[2px] text-[#b8975e] font-semibold">FIRM PRICE</div>
+        <div class="text-xl font-semibold tabular-nums leading-tight">$24,997</div>
+      </div>
+      <a
+        href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20letyourpassionschooseyou.com&body=Hello,%0D%0A%0D%0AI%20am%20interested%20in%20acquiring%20letyourpassionschooseyou.com.%0D%0A%0D%0ABest%20regards,"
+        class="flex-1 min-h-12 px-5 bg-[#b8975e] hover:bg-[#d4af37] active:bg-[#b8975e] text-[#0c0a09] font-bold text-sm rounded-xl flex items-center justify-center gap-x-2 transition-colors"
+      >
+        <span>Inquire to Acquire</span>
+        <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
 </Layout>
 
 <script>
@@ -352,7 +505,7 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
           <div>
             <span class="block text-sm font-medium text-[#b8975e]">${item.author}</span>
           </div>
-          <div class="text-[10px] px-2.5 py-px rounded bg-white/5 text-[#6b6259] font-mono">STOIC ${String(index + 1).padStart(2, '0')}</div>
+          <div class="text-[10px] px-2.5 py-px rounded bg-white/5 text-[#948a7d] font-mono">STOIC ${String(index + 1).padStart(2, '0')}</div>
         </div>
       `;
       grid.appendChild(card);
@@ -406,12 +559,30 @@ const ogImage = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/e8c3b744-f598-
     });
   }
 
+  // Hide the sticky acquisition bar while the Acquire section is on screen
+  function setupStickyCta() {
+    const sticky = document.getElementById('sticky-cta');
+    const acquire = document.getElementById('acquire');
+    if (!sticky || !acquire || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          sticky.classList.toggle('translate-y-full', entry.isIntersecting);
+        });
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(acquire);
+  }
+
   // Boot everything
   function initialize() {
     initializeQuotes();
     setupShuffleButton();
     setupKeyboardControls();
-    console.log('%c[Stoic Domain] Press "?" while on the page to reshuffle wisdom quotes.', 'color:#6b6259; font-size: 9px');
+    setupStickyCta();
+    console.log('%c[Stoic Domain] Press "?" while on the page to reshuffle wisdom quotes.', 'color:#948a7d; font-size: 9px');
   }
 
   // Run after DOM is ready

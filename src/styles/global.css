@@ -14,6 +14,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    /* Long unbroken strings (the 28-character domain, URLs, emails) must never
+       widen a flex/grid item past the viewport on small screens. */
+    overflow-wrap: anywhere;
   }
 
   .heading-serif {

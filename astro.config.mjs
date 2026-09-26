@@ -10,6 +10,10 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      lastmod: new Date(),
+      changefreq: 'weekly',
+      priority: 1,
+    }),
   ],
 });

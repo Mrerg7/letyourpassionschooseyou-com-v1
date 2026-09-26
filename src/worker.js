@@ -12,6 +12,37 @@ const CANONICAL_HOST = 'letyourpassionschooseyou.com';
 
 const NOT_FOUND_PATHS = new Set(['/404', '/404/', '/404.html']);
 
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+};
+
+/** Merge extra headers into an upstream response without consuming its body. */
+function withHeaders(response, extra) {
+  const headers = new Headers(response.headers);
+  for (const [key, value] of Object.entries(extra)) {
+    headers.set(key, value);
+  }
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
+/** Static assets are content-hashed by Astro → safe to cache immutably. */
+function cacheControlFor(pathname) {
+  if (pathname.startsWith('/_astro/')) return 'public, max-age=31536000, immutable';
+  if (pathname === '/favicon.svg') return 'public, max-age=86400';
+  if (pathname.endsWith('.html') || pathname === '/' || pathname === '') {
+    return 'public, max-age=0, must-revalidate';
+  }
+  return null;
+}
+
 /** Collapse /index.html → / when building an off-host redirect target (one hop). */
 function directoryPath(pathname) {
   if (pathname === '/index.html' || pathname.endsWith('/index.html')) {
@@ -36,10 +67,15 @@ function canonicalLocation(url) {
 
 async function fetchAsset(env, request, url) {
   // With html_handling=none, "/" does not auto-map to index.html.
-  if (url.pathname === '/' || url.pathname === '') {
-    return env.ASSETS.fetch(new URL('/index.html', url.origin));
-  }
-  return env.ASSETS.fetch(request);
+  const asset =
+    url.pathname === '/' || url.pathname === ''
+      ? await env.ASSETS.fetch(new URL('/index.html', url.origin))
+      : await env.ASSETS.fetch(request);
+
+  const extra = { ...SECURITY_HEADERS };
+  const cacheControl = cacheControlFor(url.pathname);
+  if (cacheControl) extra['Cache-Control'] = cacheControl;
+  return withHeaders(asset, extra);
 }
 
 export default {
@@ -48,7 +84,8 @@ export default {
 
     const location = canonicalLocation(url);
     if (location) {
-      return Response.redirect(location, 301);
+      const redirect = Response.redirect(location, 301);
+      return withHeaders(redirect, SECURITY_HEADERS);
     }
 
     // Serve the 404 document with a real 404 — never 200 or a client redirect.
@@ -56,6 +93,10 @@ export default {
       const asset = await env.ASSETS.fetch(new URL('/404.html', url.origin));
       const headers = new Headers(asset.headers);
       headers.set('X-Robots-Tag', 'noindex, nofollow');
+      headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+      for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+        headers.set(key, value);
+      }
       return new Response(asset.body, {
         status: 404,
         statusText: 'Not Found',
@@ -65,7 +106,10 @@ export default {
 
     // Common crawler target — serve at 200 (no redirect chain).
     if (url.pathname === '/sitemap.xml') {
-      return env.ASSETS.fetch(new URL('/sitemap-index.xml', url.origin));
+      const sitemapAsset = await env.ASSETS.fetch(
+        new URL('/sitemap-index.xml', url.origin)
+      );
+      return withHeaders(sitemapAsset, SECURITY_HEADERS);
     }
 
     return fetchAsset(env, request, url);
